@@ -1,6 +1,6 @@
 // Configurações de conexão ao banco de dados
 
-require('dotenv').config({path: 'variaveis.env'})
+require('dotenv').config({ path: 'variaveis.env' })
 
 // importação do módulo MYSQL
 const mysql = require('mysql2')
