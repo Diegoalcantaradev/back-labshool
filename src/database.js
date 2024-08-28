@@ -17,3 +17,4 @@ connection.connect(err => {
     if (err) throw err
     console.log(`connection to database ${process.env.BD_NAME}`)
 });
+module.exports = connection
