@@ -1,7 +1,8 @@
 //Importação do database
-const { query } = require('express')
+const { query, request } = require('express')
 const { seach } = require('../routes')
 const database = require('../database')
+const { updateCurso } = require('../controllers/CursoController')
 
 
 module.exports = {
@@ -20,14 +21,53 @@ module.exports = {
 
     // Métado para cadastrar um curso
     createCurso: (nome) => {
-        return new Promise((resolve,reject) => {
-        database.query(`INSERT INTO curso VALUES (null, "${nome}", null)`, (err, result)=>{
-            if(err){
-                reject(err)
-                return
-            }
-            resolve(result)
+        return new Promise((resolve, reject) => {
+            database.query(`INSERT INTO curso VALUES (null, "${nome}", 0)`, (err, result) => {
+                if (err) {
+                    reject(err)
+                    return
+                }
+                resolve(result)
+            })
         })
+    },
+
+    // Método para pesquisar um curso pelo id
+    findCursoById: (id) => {
+        return new Promise((resolve, reject) => {
+            database.query(`SELECT * FROM curso WHERE id = ${id}`, (err, result) => {
+                if (err) {
+                    reject(err)
+                    return
+                }
+                resolve(result)
+            })
+        })
+    },
+
+    // Método para atualizar um curso
+    updateCurso: (id, nome, quantidade) => {
+        return new Promise((resolve, reject) => {
+            database.query(`UPDATE curso SET nome="${nome}", quantidade=${quantidade} WHERE id= ${id}`, (err, result)=> {
+                if(err){
+                    reject(err)
+                    return
+                }
+                resolve(result)
+            })
+        }
+    )
+    },
+    //Método para deletar um curso
+    deleteCurso: (id) => {
+        return new Promise((resolve, reject)=> {
+            database.query(`DELETE FROM curso WHERE id =${id}`, (err, result)=> {
+                if(err){
+                    reject(err)
+                    return
+                }
+                resolve(result)
+            }) 
         })
     }
 }
