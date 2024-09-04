@@ -5,7 +5,7 @@ module.exports = {
 
     //Método para consultar os cursos
     findAllTurmas: async (request, response) => {
-        //Declaração do objeto jgon será retornado como resposta da requisição
+        //Declaração do objeto json será retornado como resposta da requisição
         let json = { error: "", result: [] }
         //Invocar a função que irá consultar o BD para listar as turmas
         let cursos = await cursoService.readCursos()
