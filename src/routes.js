@@ -3,6 +3,7 @@ const route = express.Router()
 const cors = require('cors')
 const CursoController = require('./controllers/CursoController')
 const AlunoController = require('./controllers/AlunoController')
+const upload = require('./config/multerConfig')
 
 route.options("*", cors())
 
@@ -15,6 +16,8 @@ route.delete('/curso/:id', CursoController.deleteCurso) //DELETE
 // Endpoint - Alunos
 route.get('/aluno', AlunoController.findAllAlunos) //READY
 route.get('/aluno/:id', AlunoController.findAlunoById) //READY
+route.post('/aluno', upload.single('image'), AlunoController.saveAluno) //CREATE
+//route.update('/aluno/:id', AlunoController.updateAluno) //UPDATE
 route.delete('/aluno/:id', AlunoController.deleteAluno) //DELETE
 
 module.exports = route
