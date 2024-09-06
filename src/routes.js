@@ -17,7 +17,7 @@ route.delete('/curso/:id', CursoController.deleteCurso) //DELETE
 route.get('/aluno', AlunoController.findAllAlunos) //READY
 route.get('/aluno/:id', AlunoController.findAlunoById) //READY
 route.post('/aluno', upload.single('image'), AlunoController.saveAluno) //CREATE
-//route.update('/aluno/:id', AlunoController.updateAluno) //UPDATE
+route.put('/aluno/:id',upload.single('image'), AlunoController.updateAluno) //UPDATE
 route.delete('/aluno/:id', AlunoController.deleteAluno) //DELETE
 
 module.exports = route
