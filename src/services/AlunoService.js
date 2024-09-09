@@ -3,6 +3,18 @@ const { updateAluno } = require('../controllers/AlunoController')
 const database = require('../database')
 
 module.exports = {
+    //Método para consultar os alunos
+    getAluno: () => {
+        return new Promise((resolve, reject) => {
+            database.query(`Select id, nome, telefone, email, FROM aluno`,(err, result)=>{
+            if(err){
+            reject(err)
+            return
+            }
+            resolve(result)
+            })
+        })
+    },
     //Método para atualizar um aluno
     updateAluno: (id, foto, nome, telefone, email, data_nascimento) => {
         return new Promise((resolve, reject)=>{
