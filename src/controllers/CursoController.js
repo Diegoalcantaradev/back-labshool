@@ -73,17 +73,17 @@ module.exports = {
 
     // Método para deletar um curso
     deleteCurso: async (request, response) => {
-        let json = {error: "", result: {}}
+        let json = { error: "", result: {} }
 
         let id = request.params.id
 
-        if(id){
+        if (id) {
             let cursoValid = await cursoService.findCursoById(id)
 
-            if(cursoValid.length == 0){
+            if (cursoValid.length == 0) {
                 json.error = "Curso não encontrado!"
                 response.status(404).json(json)
-            }else{
+            } else {
                 await cursoService.deleteCurso(id)
 
                 json.result = `Curso ${cursoValid[0].nome} excluído com sucesso.`

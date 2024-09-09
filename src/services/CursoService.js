@@ -48,26 +48,26 @@ module.exports = {
     // Método para atualizar um curso
     updateCurso: (id, nome, quantidade) => {
         return new Promise((resolve, reject) => {
-            database.query(`UPDATE curso SET nome="${nome}", quantidade=${quantidade} WHERE id= ${id}`, (err, result)=> {
-                if(err){
+            database.query(`UPDATE curso SET nome="${nome}", quantidade=${quantidade} WHERE id= ${id}`, (err, result) => {
+                if (err) {
                     reject(err)
                     return
                 }
                 resolve(result)
             })
         }
-    )
+        )
     },
     //Método para deletar um curso
     deleteCurso: (id) => {
-        return new Promise((resolve, reject)=> {
-            database.query(`DELETE FROM curso WHERE id =${id}`, (err, result)=> {
-                if(err){
+        return new Promise((resolve, reject) => {
+            database.query(`DELETE FROM curso WHERE id =${id}`, (err, result) => {
+                if (err) {
                     reject(err)
                     return
                 }
                 resolve(result)
-            }) 
+            })
         })
     }
 }
