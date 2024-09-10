@@ -9,8 +9,11 @@ module.exports = {
         let json = { error: "", result: "" }
 
         let id = request.params.id
-
-        let foto = request.file.buffer
+        
+        let foto = null
+        if(request.file){
+            foto = request.file.buffer
+        }
         let nome = request.body.nome
         let telefone = request.body.telefone
         let data_nascimento = request.body.data_nascimento
@@ -43,7 +46,10 @@ module.exports = {
     saveAluno: async (request, response) => {
         let json = { error: "", result: "" }
 
-        let foto = request.file.buffer
+        let foto = null
+        if(request.file){
+            foto = request.file.buffer
+        }
         let nome = request.body.nome
         let telefone = request.body.telefone
         let data_nascimento = request.body.data_nascimento
@@ -52,7 +58,7 @@ module.exports = {
 
         let aluno = await AlunoService.createAluno(foto, nome, telefone, email, data_nascimento, curso)
 
-        json.result = `Aluno: ${nome} cadastrado com sucesso! ID: { ${aluno.insertID}}`
+        json.result = `Aluno: ${nome} cadastrado com sucesso! ID: { ${aluno.insertId}}`
         response.status(201).json(json)
     },
     //Método para consultar os alunos
@@ -107,7 +113,7 @@ module.exports = {
                 response.status(404).json(json)
             } else {
 
-                json.result = `Aluno ${alunoValid[0].nome} Valido`
+                json.result = alunoValid[0]
 
                 response.status(200).json(json)
             }
