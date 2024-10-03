@@ -56,8 +56,22 @@ module.exports = {
         let email = request.body.email
         let curso = request.body.curso
 
-        let aluno = await AlunoService.createAluno(foto, nome, telefone, email, data_nascimento, curso)
-
+         if (
+      nome != "" &&
+      email != "" &&
+      telefone != "" &&
+      data_nascimento != "" &&
+      curso != ""
+    ) {
+      let aluno = await alunoService.createAluno(
+        foto,
+        nome,
+        email,
+        telefone,
+        data_nascimento,
+        curso
+      );
+        
         json.result = `Aluno: ${nome} cadastrado com sucesso! ID: { ${aluno.insertId}}`
         response.status(201).json(json)
     },
